@@ -8,10 +8,15 @@ function Main() {
         setCount(prev => prev + 1)
     }
 
+    const handleSub = () => {
+        setCount(prev => prev - 1)
+    }
+
     return ( 
         <div>
             <h1>{count}</h1>
-            <button onClick={handleIncrease}>Increase</button>
+            <button onClick={handleIncrease} style={{margin: "10px"}}>Increase</button>
+            <button onClick={handleSub}>Sub</button>
         </div>
      );
 }
