@@ -1,11 +1,12 @@
 import './App.css';
-import State from './useState'
+//import State from './useState'
+import TwoWayBinding from './TwoWayBinding';
 
 function App() {
   return (
     <div className="wrapper" style={{padding: '30px'}}>
       <div>This is Home Page</div>
-      <State></State>
+      <TwoWayBinding></TwoWayBinding>
     </div>
   );
 }
