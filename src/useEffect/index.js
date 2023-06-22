@@ -1,6 +1,21 @@
 import { useEffect, useState } from "react";
 const tabs = ['posts','comments','albums'];
 
+const comments = [
+    {
+        id: 1,
+        title: "CHAT-APP 1"
+    },
+    {
+        id: 2,
+        title: "CHAT-APP 2"
+    },
+    {
+        id: 3,
+        title: "CHAT-APP 3"
+    },
+]
+
 //1. useEffect(callback)
 //  - callback duoc goi khi component re-render
 //  - callback duoc goi sau khi elements da duoc them vao DOM    
@@ -23,6 +38,7 @@ function Effect() {
     const [width,setWidth] = useState(window.innerWidth);
     const [countDown,setCountDown] = useState(180);
     const [avatar,setAvatar] = useState('');
+    const [lesson,setLesson] = useState(1);
 
     //1.
     useEffect(() => {
@@ -112,8 +128,32 @@ function Effect() {
         setAvatar(file);
     }
 
+
+    //6. fake chat-app
+    useEffect(() => {
+        const handleComment = ({detail}) => {
+            console.log(detail)
+        }
+
+        window.addEventListener(`lesson-${lesson}`,handleComment);
+
+        //Cleanup func
+        return () => window.removeEventListener(`lesson-${lesson}`,handleComment);
+    },[lesson])
+
     return ( 
         <div>
+            <ul>
+                {comments.map((comment) => {
+                    return <li 
+                        key={comment.id}
+                        style={lesson === comment.id ? {color: 'red'}: {}}
+                        onClick={() => setLesson(comment.id)}
+                    >
+                        {comment.title}
+                    </li>
+                })}
+            </ul>
             <h1>{countDown}</h1>
             <input 
                 value={title} 

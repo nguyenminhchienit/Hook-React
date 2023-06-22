@@ -5,6 +5,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+function emitComment(id){
+  setInterval(() => {
+    window.dispatchEvent(
+      new CustomEvent(`lesson-${id}`, {
+        detail: `Noi dung comment cua lesson-${id}`
+      })
+    )
+  },2000);
+}
+
+emitComment(1)
+emitComment(2)
+emitComment(3)
+
 root.render(
   <React.StrictMode>
     <App />
