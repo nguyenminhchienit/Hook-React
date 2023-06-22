@@ -12,11 +12,14 @@ const tabs = ['posts','comments','albums'];
 
 //------------- DUNG CHUNG CUA EFFECT ----------------
 //1. Callback luon duoc goi khi component mounted
+//2. Cleanup Func luon duoc goi truoc khi component unmounted
+
 function Effect() {
     const [title,setTitle] = useState('');
     const [post,setPost] = useState([]);
     const [type,setType] = useState('posts');
-    console.log(type);
+    const [showGoToTop,setShowGoToTop] = useState(false);
+    const [width,setWidth] = useState(window.innerWidth);
 
     //1.
     useEffect(() => {
@@ -41,6 +44,35 @@ function Effect() {
         })
     },[type]);
 
+    //DOM events
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowGoToTop(window.scrollY > 200);
+        }
+
+        window.addEventListener('scroll',handleScroll);
+        console.log('addEventListener')
+
+        //Cleanup Func
+        return ()=> {
+            
+            window.removeEventListener('scroll',handleScroll);
+            console.log('removeEventListener')
+        }
+    },[])
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        }
+        window.addEventListener('resize',handleResize);
+
+        //Cleanup func
+        return () => {
+            window.removeEventListener('resize',handleResize);
+        }
+    },[])
+
 
     return ( 
         <div>
@@ -59,11 +91,14 @@ function Effect() {
                     {tab}
                 </button>
             })}
+            <h1>{width}</h1>
             <ul>
                 {post.map((item) => {
                     return <li key={item.id}>{item.title || item.email}</li>
                 })}
             </ul>
+            
+            {showGoToTop && <button style={{position: 'fixed', bottom: '20px', right: '20px'}}>Go To Top</button>}
         </div>
      );
 }
