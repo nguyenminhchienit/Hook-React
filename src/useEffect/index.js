@@ -13,6 +13,7 @@ const tabs = ['posts','comments','albums'];
 //------------- DUNG CHUNG CUA EFFECT ----------------
 //1. Callback luon duoc goi khi component mounted
 //2. Cleanup Func luon duoc goi truoc khi component unmounted
+//3. Cleanup Func luon duoc goi truoc khi callback duoc goi (tru lan dau mounted)
 
 function Effect() {
     const [title,setTitle] = useState('');
@@ -20,6 +21,7 @@ function Effect() {
     const [type,setType] = useState('posts');
     const [showGoToTop,setShowGoToTop] = useState(false);
     const [width,setWidth] = useState(window.innerWidth);
+    const [countDown,setCountDown] = useState(180);
 
     //1.
     useEffect(() => {
@@ -71,11 +73,26 @@ function Effect() {
         return () => {
             window.removeEventListener('resize',handleResize);
         }
-    },[])
+    },[]);
 
+
+    //4. use with setInterval,setTimeout
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         setCountDown(prevState => prevState - 1);
+    //     },1000)
+    // },[])
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            setCountDown(countDown - 1);
+        },1000)
+    },[countDown])
 
     return ( 
         <div>
+            <h1>{countDown}</h1>
             <input 
                 value={title} 
                 onChange={(e)=> setTitle(e.target.value)} 
