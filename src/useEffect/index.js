@@ -30,6 +30,22 @@ const comments = [
 //2. Cleanup Func luon duoc goi truoc khi component unmounted
 //3. Cleanup Func luon duoc goi truoc khi callback duoc goi (tru lan dau mounted)
 
+
+//========== useEffect ============== thu tu thuc hien
+//1. Cap nhat state
+//2. Cap nhat DOM (mutated)
+//3. Render UI
+//4. Goi cleanup func neu deps thay doi
+//5. Goi useEffect callback
+
+//========== useLayoutEffect ============== thu tu thuc hien
+//1. Cap nhat state
+//2. Cap nhat DOM (mutated)
+//3. Goi cleanup func neu deps thay doi (sync)
+//4. Goi useEffect callback (sync)
+//5. Render UI
+
+
 function Effect() {
     const [title,setTitle] = useState('');
     const [post,setPost] = useState([]);
