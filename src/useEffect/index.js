@@ -22,6 +22,7 @@ function Effect() {
     const [showGoToTop,setShowGoToTop] = useState(false);
     const [width,setWidth] = useState(window.innerWidth);
     const [countDown,setCountDown] = useState(180);
+    const [avatar,setAvatar] = useState('');
 
     //1.
     useEffect(() => {
@@ -85,10 +86,31 @@ function Effect() {
 
 
     useEffect(() => {
-        setTimeout(() => {
+        const idTimer = setTimeout(() => {
             setCountDown(countDown - 1);
         },1000)
+
+        return () => clearTimeout(idTimer);
     },[countDown])
+
+    //5. Preview Avatar
+
+    //Dung cleanup func de xoa anh cu ra khoi bo nho 
+    useEffect(() => {
+
+        //cleanup func
+        return () => {
+            avatar && URL.revokeObjectURL(avatar.preview)
+        }
+    },[avatar])
+    const handlePreviewAvatar = (e) => {
+        const file = e.target.files[0];
+
+        //Them mot obj moi co ten la preview
+        file.preview = URL.createObjectURL(file)
+
+        setAvatar(file);
+    }
 
     return ( 
         <div>
@@ -99,6 +121,11 @@ function Effect() {
                 type="text" 
                 style={{marginTop: '10px'}}
             />
+            <input 
+                onChange={handlePreviewAvatar} 
+                type="file" 
+                style={{margin: '10px'}}
+            />
             {tabs.map((tab) => {
                 return <button  
                     style={type === tab ? {background: '#333', color: '#fff'} : {}} 
@@ -108,6 +135,9 @@ function Effect() {
                     {tab}
                 </button>
             })}
+            <br></br>
+            {avatar.preview && <img style={{width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover'}} src={avatar.preview} alt="user"></img>}
+
             <h1>{width}</h1>
             <ul>
                 {post.map((item) => {
