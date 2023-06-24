@@ -6,7 +6,8 @@ import './App.css';
 // import Callback from './useCallBack';
 // import Memo from './useMemo';
 // import Reducer from './useReducer';
-import Todo from './TodoWithUseReducer';
+// import Todo from './TodoWithUseReducer';
+import UseContext from './useContext';
 
 import {useState} from 'react'
 
@@ -17,7 +18,7 @@ function App() {
     <div className="wrapper" style={{padding: '30px'}}>
       <div>This is Home Page</div>
       <button onClick={() => setShow(!show)}>Toggle</button>
-      {show && <Todo></Todo>}
+      {show && <UseContext></UseContext>}
     </div>
   );
 }
