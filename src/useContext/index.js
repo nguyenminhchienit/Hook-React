@@ -2,7 +2,7 @@ import { ThemeContext } from './ThemeContext';
 import { useContext } from 'react';
 import Content from './Content'
 
-//Su dung useContext de truyen khong can thong qua component trung gian
+//Su dung useContext de truyen props khong can thong qua component trung gian
 
 //Phan nay cai obj cua context tra ve co Provider (dung de truyen value), Consumer(de noi nhan value su du )
 
