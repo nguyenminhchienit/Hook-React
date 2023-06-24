@@ -5,7 +5,8 @@ import './App.css';
 // import Ref from './useRef';
 // import Callback from './useCallBack';
 // import Memo from './useMemo';
-import Reducer from './useReducer';
+// import Reducer from './useReducer';
+import Todo from './TodoWithUseReducer';
 
 import {useState} from 'react'
 
@@ -16,7 +17,7 @@ function App() {
     <div className="wrapper" style={{padding: '30px'}}>
       <div>This is Home Page</div>
       <button onClick={() => setShow(!show)}>Toggle</button>
-      {show && <Reducer></Reducer>}
+      {show && <Todo></Todo>}
     </div>
   );
 }
