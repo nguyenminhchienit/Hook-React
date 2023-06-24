@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {ThemeProvider} from './useContext/ThemeContext';
+import { StoreProvider } from './GlobalStateWithContextAndReducer/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -23,9 +23,9 @@ emitComment(3)
 
 root.render(
   <React.StrictMode>
-  <ThemeProvider>
+  <StoreProvider>
     <App />
-  </ThemeProvider>
+  </StoreProvider>
   </React.StrictMode>
 );
 
